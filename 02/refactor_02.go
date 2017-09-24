@@ -70,15 +70,16 @@ func (g TennisGame) GetScore() string {
 }
 
 func (g TennisGame) printScore() string {
-	a := g.Player1.Name + " " + strconv.Itoa(g.Player1.Point) + " - " + strconv.Itoa(g.Player2.Point) + " " + g.Player2.Name
-	return a
+	text := g.Player1.Name + " " + strconv.Itoa(g.Player1.Point) + " - " + strconv.Itoa(g.Player2.Point) + " " + g.Player2.Name
+	return text
 }
 
 func main() {
-	var player1 = &Player{"Sepry", 1}
+	var player1 = &Player{"Sepry", 0}
 	var player2 = &Player{"Haryandi", 0}
 	var g = TennisGame{player1, player2}
 
+	g.AddPoint(player1)
 	fmt.Println(g.printScore())
 	fmt.Println(g.GetScore())
 }
