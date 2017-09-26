@@ -20,53 +20,30 @@ func (g TennisGame) AddPoint(player *Player) {
 }
 
 func (g TennisGame) GetScore() string {
-	score := ""
+	var playerName string
+	var tempScore string
 
-	tempScore := 0
-
-	if g.Player1.Point == g.Player2.Point {
-		switch g.Player1.Point {
-		case 0:
-			score = "Love-All"
-		case 1:
-			score = "Fifteen-All"
-		case 2:
-			score = "Thirty-All"
-		default:
-			score = "Deuce"
+	if g.Player1.Point < 4 && g.Player2.Point < 4 && !(g.Player1.Point+g.Player2.Point == 6) {
+		p := []string{"Love", "Fifteen", "Thirty", "Forty"}
+		tempScore = p[g.Player1.Point]
+		if g.Player1.Point == g.Player2.Point {
+			return tempScore + "-All"
 		}
-	} else if g.Player1.Point >= 4 || g.Player2.Point >= 4 {
-		minusResult := g.Player1.Point - g.Player2.Point
-		if minusResult == 1 {
-			score = "Advantage " + g.Player1.Name
-		} else if minusResult == -1 {
-			score = "Advantage " + g.Player2.Name
-		} else if minusResult >= 2 {
-			score = "Win for " + g.Player1.Name
-		} else {
-			score = "Win for " + g.Player2.Name
-		}
+		return tempScore + "-" + p[g.Player2.Point]
 	} else {
-		for i := 1; i < 3; i++ {
-			if i == 1 {
-				tempScore = g.Player1.Point
-			} else {
-				score += "-"
-				tempScore = g.Player2.Point
-			}
-			switch tempScore {
-			case 0:
-				score += "Love"
-			case 1:
-				score += "Fifteen"
-			case 2:
-				score += "Thirty"
-			case 3:
-				score += "Forty"
-			}
+		if g.Player1.Point == g.Player2.Point {
+			return "Deuce"
 		}
+		if g.Player1.Point > g.Player2.Point {
+			playerName = g.Player1.Name
+		} else {
+			playerName = g.Player2.Name
+		}
+		if (g.Player1.Point-g.Player2.Point)*(g.Player1.Point-g.Player2.Point) == 1 {
+			return "Advantage " + playerName
+		}
+		return "Win for " + playerName
 	}
-	return score
 }
 
 func (g TennisGame) printScore() string {

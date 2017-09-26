@@ -7,3 +7,9 @@ We try to learn about refactor legacy code, and how to minimizing and simplify t
 This code using tennis games scoring method, you can see here https://en.wikipedia.org/wiki/Tennis_scoring_system
 
 credit to : https://github.com/jpartogi/gotenniskata.git
+
+## Run Unit Test
+You can run Unit Test using this command
+```
+go test -v 01/refactor_01_test.go 01/refactor_01.go
+```
