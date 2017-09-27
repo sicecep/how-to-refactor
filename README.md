@@ -11,5 +11,5 @@ credit to : https://github.com/jpartogi/gotenniskata.git
 ## Run Unit Test
 You can run Unit Test using this command
 ```
-go test -v 01/refactor_01_test.go 01/refactor_01.go
+go test -v -cover 01/refactor_01_test.go 01/refactor_01.go
 ```
